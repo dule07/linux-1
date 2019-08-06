@@ -12,7 +12,7 @@ sda               8:0    0   20G  0 disk
 sr0              11:0    1 1024M  0 rom  
 ```
 - Bước 2: Tăng dung lượng ổ cứng trên VMware. Khởi động lại VM
- * Kiểm tra lại thông tin disk
+  * Kiểm tra lại thông tin disk
 ```
 [root@localhost ~]# lsblk 
 NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
