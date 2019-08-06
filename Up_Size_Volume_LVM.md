@@ -1,4 +1,4 @@
-# Tăng dung lượng partition sử dụng LVM
+# Tăng dung lượng partition sử dụng LVM (VMware)
 ## Một số câu lệnh
    * pvdisplay: Hiện thị list physical volume
    * vgdisplay: Hiện thị list volume group
