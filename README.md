@@ -1,1 +1,1 @@
-# Các tips trick cơ bản trên linux
+# Các thủ thuật cơ bản trên linux
