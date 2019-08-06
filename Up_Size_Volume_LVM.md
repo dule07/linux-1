@@ -1,5 +1,9 @@
-# Tăng dụng lượng volume sử dụng LVM
-## I. Tăng ổ cứng đã có sẵn trên ảo hóa
+# Tăng dung lượng partition sử dụng LVM
+## Một số câu lệnh
+   * pvdisplay: Hiện thị list physical volume
+   * vgdisplay: Hiện thị list volume group
+   * lvdisplay: Hiện thị list logical volume
+### Thực hiện
 - Bước 1: Kiểm tra device type có phải LVM
 ```
 [root@localhost ~]# lsblk 
