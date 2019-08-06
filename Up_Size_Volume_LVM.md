@@ -112,6 +112,17 @@ tmpfs                    487M  7.6M  479M   2% /run
 tmpfs                    487M     0  487M   0% /sys/fs/cgroup
 /dev/sda1                950M  133M  817M  15% /boot
 tmpfs                     98M     0   98M   0% /run/user/0
+[root@localhost ~]# lsblk  -f
+NAME            FSTYPE      LABEL           UUID                                   MOUNTPOINT
+sda                                                                                
+├─sda1          xfs                         aa57d022-88a1-4abb-ae0d-e184061d90fb   /boot
+├─sda2          LVM2_member                 FP9XtM-WI9T-b2q9-jpki-dYFE-J0k2-qL5GJ3 
+│ ├─centos-root ext4                        b5938001-2df1-4643-ac6d-57d4ce1ab29d   /
+│ └─centos-swap swap                        c9fe9e48-2752-409b-ac0c-eca677dc0b5d   [SWAP]
+├─sda3          LVM2_member                 AqJZmR-LjbR-eEaG-7dJH-dUab-Y5SB-3WzYXf 
+│ └─centos-root ext4                        b5938001-2df1-4643-ac6d-57d4ce1ab29d   /
+└─sda4          LVM2_member                 b9qw2E-rjpt-orOM-ecoH-nRPI-UgGw-iMZpTk 
+  └─centos-root ext4                        b5938001-2df1-4643-ac6d-57d4ce1ab29d   /
 
 ```
 
