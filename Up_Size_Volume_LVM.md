@@ -3,6 +3,8 @@
    * pvdisplay: Hiện thị list physical volume
    * vgdisplay: Hiện thị list volume group
    * lvdisplay: Hiện thị list logical volume
+### Lưu ý
+   * Một hardisk chỉ tạo tối đa 4 phân vùng Primary. Nếu đã tạo đủ 4 phân vùng thì nên thêm một ổ cứng mới   
 ### Thực hiện
 - Bước 1: Kiểm tra device type có phải LVM
 ```
