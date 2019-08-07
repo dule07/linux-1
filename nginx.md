@@ -51,7 +51,7 @@ proxy_set_header Host $http_host;
  LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %{X-Forwarded-For}i" combined
 ```
 ## Cấu hình chạy SSL
-- Trong block server trỏ tới file private key và certificate đã được verify
+- Trong block server trỏ tới file private key và certificate
 ```
  server {
     listen       443;
