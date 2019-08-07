@@ -43,4 +43,5 @@ proxy_set_header Host $http_host;
 proxy_set_header X-Forwarded-Proto $scheme;
         }
 ```
-## Cấu hình nén dữ liệu trước khi truyền
+## Cấu hình chạy SSL
+
