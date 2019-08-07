@@ -51,4 +51,21 @@ proxy_set_header Host $http_host;
  LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %{X-Forwarded-For}i" combined
 ```
 ## Cấu hình chạy SSL
+```
+ server {
+    listen       443;
+    server_name test1.com.vn;
 
+    ssl on;
+    ssl_certificate /etc/nginx/ssl/selfsigned.crt;
+    ssl_certificate_key /etc/nginx/ssl/selfsigned.key;
+    
+    location / {
+proxy_pass      http://192.168.108.129;
+set_real_ip_from 0.0.0.0/0;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header Host $http_host;
+        }
+   }
+```
