@@ -34,14 +34,11 @@
 location / {
 proxy_pass      http://192.168.108.129;
 set_real_ip_from 0.0.0.0/0;
-proxy_http_version 1.1;
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection "upgrade";
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header Host $http_host;
-proxy_set_header X-Forwarded-Proto $scheme;
         }
 ```
+- Chú ý là truyền RealIP vào biến `X-Forwarded-For`. Phía server thì format lại log và chèn thêm `$http_x_forwarded_for` (nginx)
 ## Cấu hình chạy SSL
 
