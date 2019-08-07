@@ -3,9 +3,9 @@
  ```
  yum install mod_ssl openssl  
   ```
-- Bước 2: Tạo private key và public key. Sinh ra file key.pem và certificate.pem
+- Bước 2: Tạo private key (.key) và certificate (.csr). 
 ```
-[root@localhost ~]# openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+[root@localhost ~]#  openssl req -newkey rsa:2048 -nodes -keyout private.key -x509 -days 365 -out certificate.csr
 Generating a 2048 bit RSA private key
 ..................................................................+++
 ......................................................................+++
@@ -26,6 +26,7 @@ Organizational Unit Name (eg, section) []:Infra
 Common Name (eg, your name or your server's hostname) []:
 Email Address []:ha@test.com
 ```
+ * Trong ddos
 - Bước 3: Review lại certificate
 ```
 openssl x509 -text -noout -in certificate.pem
