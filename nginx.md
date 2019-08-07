@@ -39,6 +39,16 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header Host $http_host;
         }
 ```
-- Chú ý là truyền RealIP vào biến `X-Forwarded-For`. Phía server thì format lại log và chèn thêm `$http_x_forwarded_for` (nginx)
+- Bước 3: Phía Backend cần format lại log để hiện thị giá trị trong `X-Forwarded-For`
+- Đối với backend là Nginx
+```
+   log_format specialLog '$remote_addr forwarded for $http_x_real_ip - $remote_user [$time_local]  '
+                          '"$request" $status $body_bytes_sent '
+                          '"$http_referer" "$http_user_agent" "$http_x_forwarded_for"';
+```
+-  Đối với backend là Apache
+```
+ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %{X-Forwarded-For}i" combined
+```
 ## Cấu hình chạy SSL
 
