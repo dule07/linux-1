@@ -26,7 +26,7 @@ Organizational Unit Name (eg, section) []:Infra
 Common Name (eg, your name or your server's hostname) []:
 Email Address []:ha@test.com
 ```
- * Trong ddos
+ *Trong ddos*
 - Bước 3: Review lại certificate
 ```
 openssl x509 -text -noout -in certificate.pem
