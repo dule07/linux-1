@@ -1,11 +1,11 @@
 # Hướng dẫn tạo certificate 
- - Bước 1: Cài đặt opensll
+## Bước 1: Cài đặt opensll
  ```
  yum install mod_ssl openssl  
   ```
-- Bước 2: Tạo private key (.key) và certificate (.csr). 
+## Bước 2: Tạo private key (.key) và certificate (.csr) 
 ```
-[root@localhost ~]#  openssl req -newkey rsa:2048 -nodes -keyout private.key -x509 -days 365 -out certificate.csr
+[root@localhost ~]#  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout selfsigned.key -out selfsigned.crt
 Generating a 2048 bit RSA private key
 ..................................................................+++
 ......................................................................+++
@@ -26,8 +26,13 @@ Organizational Unit Name (eg, section) []:Infra
 Common Name (eg, your name or your server's hostname) []:
 Email Address []:ha@test.com
 ```
-  * Trong ddos
-- Bước 3: Review lại certificate
+ - req: Sử dụng chuẩn X509 cho Certificate signing request (CSR). X509 là 1 chuẩn public key mà SSL và TLS sử dụng
+ - nodes: Báo cho openSSL bỏ qua passphrase. Nếu có pass thì khi webservice khởi động phải nhập pass vào
+ - days 365: Thời hạn của chứng chỉ. Sau 1 năm thì chứng chỉ mất giá trị
+ - newkey -rsa:2048: Tạo key luôn trong 1 lệnh và sử dụng mã hóa RSA 2048bit
+ - keyout: Out của private key
+ - out: Out của certificate 
+## Bước 3: Review lại certificate
 ```
 openssl x509 -text -noout -in certificate.pem
 ```
