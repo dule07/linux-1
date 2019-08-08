@@ -105,6 +105,14 @@ proxy_read_timeout          600;
 send_timeout                600;
 ```
 ## Cấu hình cache file
+- Thêm vào block `http`
 ```
 proxy_cache_path /etc/nginx/cache levels=1:2    keys_zone=STATIC:10m    inactive=24h  max_size=1g loader_threshold=300 loader_files=200;
-``
+```
+ - Mỗi request sẽ có 1 key tương ứng
+ - Thêm vào block `location` của site
+```
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 404      1m;
+proxy_cache_valid any 5m;
+```
