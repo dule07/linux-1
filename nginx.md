@@ -112,6 +112,7 @@ proxy_cache_path /etc/nginx/cache levels=1:2    keys_zone=STATIC:10m    inactive
  - Mỗi request sẽ có 1 key tương ứng
  - Thêm vào block `location` của site
 ```
+proxy_cache STATIC;
 proxy_cache_valid 200 302 10m;
 proxy_cache_valid 404      1m;
 proxy_cache_valid any 5m;
