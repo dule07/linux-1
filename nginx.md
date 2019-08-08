@@ -24,6 +24,11 @@
 
     }
 ```
+## Thông số cơ bản
+- `max_clients = worker_processes * worker_connections`
+- `server_tokens off`  Tắt thông tin phiên bản Nginx
+
+
 ## Cấu hình truyền real IP client sang backend
  - Bước 1: Kiểm tra module realip đã có trong nginx chưa
  ```
