@@ -70,3 +70,29 @@ proxy_set_header Host $http_host;
         }
    }
 ```
+## Cấu hình nén dữ liệu
+- Thêm vào trong block http. Nếu muốn site nào off thì ném `gzip off` vào trong block server
+```
+gzip on;
+gzip_disable "msie6";    ## disable with ie6
+
+gzip_vary on;
+gzip_proxied any;
+gzip_comp_level 6;
+gzip_buffers 16 8k;
+gzip_http_version 1.1;
+gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+```
+-- Kiểm tra xem site đã enable gzip chưa
+```
+[root@localhost ~]# curl -H "Accept-Encoding: gzip" -I http://192.168.108.128/
+HTTP/1.1 403 Forbidden
+Server: nginx/1.12.2
+Date: Thu, 08 Aug 2019 02:29:45 GMT
+Content-Type: text/html; charset=UTF-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Last-Modified: Thu, 16 Oct 2014 13:20:58 GMT
+ETag: W/"1321-5058a1e728280"
+**Content-Encoding: gzip**
+```
