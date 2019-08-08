@@ -81,6 +81,7 @@ gzip_proxied any;
 gzip_comp_level 6;
 gzip_buffers 16 8k;
 gzip_http_version 1.1;
+gzip_min_length 256;
 gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 ```
 -- Kiểm tra xem site đã enable gzip chưa
@@ -96,3 +97,14 @@ Last-Modified: Thu, 16 Oct 2014 13:20:58 GMT
 ETag: W/"1321-5058a1e728280"
 **Content-Encoding: gzip**
 ```
+## Cấu hình timeout đối với backend
+```
+proxy_connect_timeout       600;
+proxy_send_timeout          600;
+proxy_read_timeout          600;
+send_timeout                600;
+```
+## Cấu hình cache file
+```
+proxy_cache_path /etc/nginx/cache levels=1:2    keys_zone=STATIC:10m    inactive=24h  max_size=1g loader_threshold=300 loader_files=200;
+``
