@@ -123,3 +123,28 @@ proxy_cache_valid any 5m;
 ```
 return 301 https://$server_name$request_uri;
 ```
+
+### Cấu hình làm loadbalancer
+```
+upstream mywebapp1 {
+    server x.x.x.x;
+    server y.y.y.y;
+}
+
+ server {
+        listen       80;
+        server_name  test1.com.vn;
+        access_log /var/log/nginx/test_access.log specialLog;
+        error_log /var/log/nginx/test_error.log;
+
+        location / {
+        proxy_pass     http://mywebapp1;
+        }
+}
+```
+ - Round robin: Mặc định (không còn thêm gì)
+ - Least Connections: Request tiếp theo sẽ đẩy cho Server có số active connection thấp nhất (least_conn;)
+ - ip hash: Dựa vào IP client (3 octet để xác minh). Đảm bảo cùng client sẽ đẩy vào đúng server (ip_hash;)
+ - Còn vài thuật toán nữa
+ - Để maintain server backend thì thêm `down` (server backend3.example.com down;)
+ - Thêm `weight` để đặt trọng số đối với round robin (server backend1.example.com weight=5;)
