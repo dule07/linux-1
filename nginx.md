@@ -118,3 +118,8 @@ proxy_cache_valid 200 302 10m;
 proxy_cache_valid 404      1m;
 proxy_cache_valid any 5m;
 ```
+## Cấu hình redirect
+- Chèn đoạn sau vào block server port 80 để redirect sang https 443
+```
+return 301 https://$server_name$request_uri;
+```
