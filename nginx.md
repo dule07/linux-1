@@ -124,7 +124,7 @@ proxy_cache_valid any 5m;
 return 301 https://$server_name$request_uri;
 ```
 
-### Cấu hình làm loadbalancer
+## Cấu hình làm loadbalancer
 ```
 upstream mywebapp1 {
     server x.x.x.x;
@@ -148,3 +148,10 @@ upstream mywebapp1 {
  - Còn vài thuật toán nữa
  - Để maintain server backend thì thêm `down` (server backend3.example.com down;)
  - Thêm `weight` để đặt trọng số đối với round robin (server backend1.example.com weight=5;)
+
+## Cài đặt và cấu hình với php-fpm
+```
+yum install epel-release
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+rpm -Uvh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+```
