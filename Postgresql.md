@@ -29,3 +29,15 @@ host    all             all             127.0.0.1/32            trust
 host    all             all             ::1/128                 trust
 host    all             all             192.168.108.0/24        trust
 ```
+### Tạo, xóa database/table
+```
+create database hello with owner postgres ;
+\l #Hiện danh sách database
+\c hello # kết nối tới database hello
+CREATE TABLE test (id int, first_name varchar, last_name varchar); 
+\dt #Hiện danh sách table
+INSERT INTO test VALUES (1, 'ABC', '123');
+select * from test;
+drop table test; #Xóa tables
+drop database hello; # Xóa database
+```
