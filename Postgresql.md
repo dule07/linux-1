@@ -41,3 +41,7 @@ select * from test;
 drop table test; #Xóa tables
 drop database hello; # Xóa database
 ```
+### Tạo user, gán quyền
+```
+
+```
