@@ -150,8 +150,54 @@ upstream mywebapp1 {
  - Thêm `weight` để đặt trọng số đối với round robin (server backend1.example.com weight=5;)
 
 ## Cài đặt và cấu hình với php-fpm
+### Cài đặt gói
 ```
 yum install epel-release
 rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 rpm -Uvh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+yum --enablerepo=remi-php71 install php-mysql php-xml \
+php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
+```
+### Cấu hình php-fpm. Doc nó bảo dùng sock nhanh hơn?
+```
+[root@localhost conf.d]# vim /etc/php-fpm.d/www.conf
+user = nginx
+group = nginx
+listen.owner = nginx
+listen.group = nginx
+listen.mode = 0660
+listen = /var/run/php-fpm/php-fpm.sock
+```
+### Cấu hình nginx
+```
+ server {
+    listen       80;
+    server_name  test1.sun1;
+
+    # note that these lines are originally from the "location /" block
+    root   /usr/share/nginx/html;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+```
+### Tạo 1 file info.php với nội dung `<?php phpinfo(); ?>` để test. Đồng thời start dịch vụ
+```
+systemctl restart php-fpm
+systemctl restart nginx
 ```
