@@ -18,8 +18,11 @@ PONG
 ### Cấu hình
 File config /etc/redis.conf
 Bảo mật chỉ cho phép truy cập Redis bằng địa chỉ IP Loopback
+
 ```bind 127.0.0.1```
 Thiết lập số lượng kết nối tối đa vào cùng 1 thời điểm, mặc định là 10000
+
 ```maxclients 10000```
 Thiết lập giới hạn bộ nhớ tối đa cho Redis Server, ví dụ 1GB
+
 ```maxmemory 1024mb```
