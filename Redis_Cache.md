@@ -32,6 +32,6 @@ net.core.somaxconn = 65535
 ```
 Chạy lệnh sau khi khởi động server. Chèn vào */etc/rc.local*
 ```
-/usr/b*n/echo "never" > /sys/kernel/mm/transparent_hugepage/enabled
+/usr/bin/echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 ```
