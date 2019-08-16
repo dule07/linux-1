@@ -24,4 +24,14 @@ File config /etc/redis.conf
   - Thiết lập giới hạn bộ nhớ tối đa cho Redis Server, ví dụ 1GB
 ```maxmemory 1024mb```
 
-Cấu hình `vm.overcommit_memory = 1` để tránh bị crash server khi memory thấp
+Thêm đoạn sau vào file sysctl để tránh bị crash server khi memory thấp
+```
+vim /etc/sysctl.conf
+vm.overcommit_memory = 1
+net.core.somaxconn = 65535
+```
+Chạy lệnh sau khi khởi động server. Chèn vào '/etc/rc.local'
+```
+/usr/bin/echo "never" > /sys/kernel/mm/transparent_hugepage/enabled
+
+```
