@@ -23,3 +23,5 @@ File config /etc/redis.conf
 ```maxclients 10000```
   - Thiết lập giới hạn bộ nhớ tối đa cho Redis Server, ví dụ 1GB
 ```maxmemory 1024mb```
+
+Cấu hình `vm.overcommit_memory = 1` để tránh bị crash server khi memory thấp
