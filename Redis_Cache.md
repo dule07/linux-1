@@ -33,5 +33,20 @@ net.core.somaxconn = 65535
 Chạy lệnh sau khi khởi động server. Chèn vào */etc/rc.local*
 ```
 /usr/bin/echo never > /sys/kernel/mm/transparent_hugepage/enabled
-
+```
+### Đặt mật khẩu
+Đặt mật khẩu trong file redis.conf
+```
+requirepass d32b7a32ee2a1f75689cdb147982a56654786b4daeb5d2b55a2acce135bbb9cf
+```
+Kiểm tra bằng cách ping thử, khi chưa nhập password sẽ báo lỗi 
+```
+redis-cli
+127.0.0.1:6379> ping
+(error) NOAUTH Authentication required.
+127.0.0.1:6379> auth d32b7a32ee2a1f75689cdb147982a56654786b4daeb5d2b55a2acce135bbb9cf
+OK
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> 
 ```
