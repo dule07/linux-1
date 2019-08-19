@@ -44,7 +44,13 @@ select * from test;
 drop table test; #Xóa tables
 drop database hello; # Xóa database
 ```
-### Tạo user, gán quyền
+### Tạo user, gán quyền, đổi mật khẩu
 ```
-
+create user test with password 'test123';
+grant all privileges on database mydb to test;
+alter user myuser with password 'hoangha1908';
+```
+## Backup database
+```
+pg_dump -U <DB Username> <DB Name> > backup.sql
 ```
