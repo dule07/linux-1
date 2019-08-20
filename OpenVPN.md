@@ -47,4 +47,13 @@ Tạo Server Certificate
 ```
  ./build-key-server openvpnserver
  ```
- Chạy xong sẽ sinh ra 3 file *openvpnserver.crt*, *openvpnserver.csr*, *openvpnserver.key*
+Chạy xong sẽ sinh ra 3 file *openvpnserver.crt*, *openvpnserver.csr*, *openvpnserver.key* trong thư mục keys
+Tạo Diffie Hellman ( DH ): băm keys
+```
+./build-dh
+```
+### Tạo Certificate và Key cho User (Mỗi user thì lặp lại quá trình này)
+```
+./build-key nguyen.hoang.ha
+```
+Chạy xong sẽ sinh ra 3 file *nguyen.hoang.ha.crt*, *nguyen.hoang.ha.csr*, *nguyen.hoang.ha.key* trong thư mục keys
