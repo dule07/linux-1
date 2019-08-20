@@ -85,6 +85,8 @@ server 10.8.0.0 255.255.255.0 (khai báo dãy IP cần cấp cho VPN Client, m�
 push “route 172.16.0.0 255.255.255.0” (lệnh này sẽ đẩy route mạng 172.16.0.0 đến Client)
 client-config-dir ccd (dùng để khai báo cấp IP tĩnh cho VPN Client - Tùy chọn)
 client-to-client (cho phép các VPN client nhìn thấy nhau, mặc định client chỉ thấy server - Tùy chọn)
-push “redirect-gateway” (mọi traffic của VPN Client – http, dns, ftp, … đều thông qua đuờng Tunnel. Khác với lệnh push route, chỉ những traffic đi vào mạng nội bộ mới thông qua Tunnel, khi dùng lệnh này yêu cầu bên trong mạng nội bộ cần có NAT Server, DNS Server)
+push “redirect-gateway” (mọi traffic của VPN Client – http, dns, ftp, … đều thông qua đuờng Tunnel. 
+Khác với lệnh push route, chỉ những traffic đi vào mạng nội bộ mới thông qua Tunnel, khi dùng lệnh này 
+yêu cầu bên trong mạng nội bộ cần có NAT Server, DNS Server)
 push “dhcp-option DNS (WINS) 10.8.0.1” đẩy DNS or WINS config vào VPN Client
 ```
