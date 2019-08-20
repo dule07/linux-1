@@ -70,3 +70,25 @@ sysctl -p (để cho các thông số có hiệu lực)
 ```
 cp /root/openvpn-2.3.18/sample/sample-config-files/server.conf /etc/openvpn/
 ```
+- Sửa cấu hình
+```
+vim /etc/openvpn/server.conf 
+local 192.168.1.200 (chọn card mạng user quay VPN đến, có thể không cần option này)
+port 1723 (default là 1194, thường port này bị firewall block nên đặt 1723 cho giống port VPN Server của Windows Server)
+proto udp (protocol udp)
+dev tun (dùng tunnel, nếu dùng theo bridge chọn dev tap0 và những config khác sẽ khác với tunnel)
+ca /etc/openvpn/easy-rsa/keys/ca.crt (khai báo đuờng dẫn cho file ca.crt)
+cert /etc/openvpn/easy-rsa/keys/openvpnserver.crt
+key /etc/openvpn/easy-rsa/keys/openvpnserver.key
+dh /etc/openvpn/easy-rsa/keys/dh1024.pem
+server 10.8.0.0 255.255.255.0 (khai báo dãy IP cần cấp cho VPN Client, mặc định VPN Server sẽ lấy IP đầu tiên – 10.8.0.1)
+;ifconfig-pool-persist ipp.txt (dùng để cho VPN Client lấy lại IP trước đó nếu bị đứt kết nối với VPN server, do chúng ta dùng IP tĩnh nên không sử dụng thông số này)
+push “route 172.16.0.0 255.255.255.0” (lệnh này sẽ đẩy route mạng 172.16.0.0 đến Client, hay còn gọi là Lan Routing trong Windows Server, giúp cho VPN Client thấy được mạng bên trong của công ty)
+push “route 192.168.1.200 255.255.255.0” do bài Lab của chúng ta VPN Client đã connect đến được network 192.168.1.0 nên không cần add route dòng này (nếu có sẽ không chạy được)
+,chỉ cần add route các lớp mạng bên trong công ty mà Client bên ngoài không connect được)
+client-config-dir ccd (dùng để khai báo cấp IP tĩnh cho VPN Client)
+client-to-client (cho phép các VPN client nhìn thấy nhau, mặc định client chỉ thấy server)
+
+push “redirect-gateway” (mọi traffic của VPN Client – http, dns, ftp, … đều thông qua đuờng Tunnel. Khác với lệnh push route, chỉ những traffic đi vào mạng nội bộ mới thông qua Tunnel, khi dùng lệnh này yêu cầu bên trong mạng nội bộ cần có NAT Server, DNS Server)
+push “dhcp-option DNS (WINS) 10.8.0.1” đẩy DNS or WINS config vào VPN Client
+```
