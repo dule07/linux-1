@@ -4,7 +4,7 @@
    * vgdisplay: Hiện thị list volume group
    * lvdisplay: Hiện thị list logical volume
 ### Lưu ý
-   * Một hardisk chỉ tạo tối đa 4 phân vùng Primary. Nếu đã tạo đủ 4 phân vùng thì nên thêm một ổ cứng mới   
+   * Một hardisk chỉ tạo tối đa 4 phân vùng Primary. Nếu đã tạo đủ 4 phân vùng thì nên thêm một ổ cứng mới. Sử dụng fdisk   
 ### Thực hiện
 - Bước 1: Kiểm tra device type có phải LVM
 ```
@@ -46,9 +46,9 @@ Thấy sda tăng từ 40GB lên 50GB
 /dev/sda2             122        2611    19994624   8e  Linux LVM
 /dev/sda3            2611        5222    20971520   8e  Linux LVM
 /dev/sda4            5222        6527    10485087+  83  Linux
-Command (m for help): t
-Partition number (1-4, default 4): 4
-Hex code (type L to list all codes): 8e
+Command (m for help): t (Change type partition)
+Partition number (1-4, default 4): 4 (Select partition)
+Hex code (type L to list all codes): 8e (Set Type LVM)
 Command (m for help): p
    Device Boot      Start         End      Blocks   Id  System
 /dev/sda1   *           1         122      975872   83  Linux
