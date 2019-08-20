@@ -58,5 +58,15 @@ Tạo Diffie Hellman ( DH ): băm keys
 ```
 Chạy xong sẽ sinh ra 3 file *nguyen.hoang.ha.crt*, *nguyen.hoang.ha.csr*, *nguyen.hoang.ha.key* trong thư mục keys
 ![img](images/keysopenvpn.PNG)
+## Cấu hình port forwarding. Dùng để Lan Routing
+Thêm tham số sau vào sysctl
+```
+vim /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+sysctl -p (để cho các thông số có hiệu lực)
+```
 ## Cấu hình server
-### Cấu hình port forwarding
+ - Copy file mẫu
+```
+cp /root/openvpn-2.3.18/sample/sample-config-files/server.conf /etc/openvpn/
+```
