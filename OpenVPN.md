@@ -77,10 +77,11 @@ local 192.168.1.200 (chọn card mạng user quay VPN đến, có thể không 
 port 1194 (OpenVPN sẽ listen ở port này)
 proto udp (protocol udp)
 dev tun (dùng tunnel, nếu dùng theo bridge chọn dev tap0 và những config khác sẽ khác với tunnel)
-ca /etc/openvpn/easy-rsa/keys/keys/ca.crt 
+ifconfig-pool-persist ipp.txt
+ca /etc/openvpn/easy-rsa/keys/ca.crt
 cert /etc/openvpn/easy-rsa/keys/openvpnserver.crt
 key /etc/openvpn/easy-rsa/keys/openvpnserver.key
-dh /etc/openvpn/easy-rsa/keys/dh1024.pem
+dh /etc/openvpn/easy-rsa/keys/dh2048.pem
 server 10.8.0.0 255.255.255.0 (khai báo dãy IP cần cấp cho VPN Client, mặc định VPN Server sẽ lấy .1)
 push “route 172.16.0.0 255.255.255.0” (lệnh này sẽ đẩy route mạng 172.16.0.0 đến Client)
 client-config-dir ccd (dùng để khai báo cấp IP tĩnh cho VPN Client - Tùy chọn)
@@ -90,3 +91,25 @@ Khác với lệnh push route, chỉ những traffic đi vào mạng nội bộ 
 yêu cầu bên trong mạng nội bộ cần có NAT Server, DNS Server)
 push “dhcp-option DNS (WINS) 10.8.0.1” đẩy DNS or WINS config vào VPN Client
 ```
+## Start Server
+```
+openvpn server.conf
+ OpenVPN 2.3.18 x86_64-unknown-linux-gnu [SSL (OpenSSL)] [LZO] [EPOLL] [MH] [IPv6] built on Aug 19 2019
+ library versions: OpenSSL 1.0.2k-fips  26 Jan 2017, LZO 2.10
+ Diffie-Hellman initialized with 2048 bit key
+ WARNING: file '/etc/openvpn/easy-rsa/keys/openvpnserver.key' is group or others accessible
+ Socket Buffers: R=[212992->212992] S=[212992->212992]
+ ROUTE_GATEWAY 192.168.108.2/255.255.255.0 IFACE=ens33 HWADDR=00:0c:29:6a:7f:5c
+ TUN/TAP device tun0 opened
+ TUN/TAP TX queue length set to 100
+ do_ifconfig, tt->ipv6=0, tt->did_ifconfig_ipv6_setup=0
+ /usr/sbin/ifconfig tun0 10.8.0.1 pointopoint 10.8.0.2 mtu 1500
+ /usr/sbin/route add -net 10.8.0.0 netmask 255.255.255.0 gw 10.8.0.2
+ UDPv4 link local (bound): [undef]
+ UDPv4 link remote: [undef]
+ MULTI: multi_init called, r=256 v=256
+ IFCONFIG POOL: base=10.8.0.4 size=62, ipv6=0
+ Initialization Sequence Completed
+```
+## Cài đặt và quay vpn từ Client Windows
+Down phần mềm và cài đặt từ link http://build.openvpn.net/downloads/releases/latest/openvpn-install-latest-stable.exe
