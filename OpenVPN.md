@@ -57,4 +57,4 @@ Tạo Diffie Hellman ( DH ): băm keys
 ./build-key nguyen.hoang.ha
 ```
 Chạy xong sẽ sinh ra 3 file *nguyen.hoang.ha.crt*, *nguyen.hoang.ha.csr*, *nguyen.hoang.ha.key* trong thư mục keys
-
+![img](image/keysopenvpn.PNG)
