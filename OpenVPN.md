@@ -113,9 +113,9 @@ openvpn server.conf
  Initialization Sequence Completed
 ```
 ## Cài đặt và quay vpn từ Client Windows
-Down phần mềm và cài đặt từ link http://build.openvpn.net/downloads/releases/latest/openvpn-install-latest-stable.exe
-Thư mục gốc sẽ là *C:\Program Files\OpenVPN*
-Trong thư mục config tạo 1 file *client.ovpn*
+ - Down phần mềm và cài đặt từ link http://build.openvpn.net/downloads/releases/latest/openvpn-install-latest-stable.exe
+ - Thư mục gốc sẽ là *C:\Program Files\OpenVPN*
+ - Trong thư mục config tạo 1 file *client.ovpn*
 ```
 client
 dev tun
@@ -132,8 +132,8 @@ cipher AES-256-CBC
 comp-lzo
 verb 3
 ```
-Copy 3 file như trên từ server đặt vào thư mục *config*
-Thực hiện quay VPN và kiểm tra kết quả
+ - Copy 3 file như trên từ server đặt vào thư mục *config*
+ - Thực hiện quay VPN và kiểm tra kết quả
 ![img](images/thumucconfigopenvpn.PNG)
 ![img](images/ketquaquayopenvpn.PNG)
 ![img](images/ketquabangdinhtuyenopenvpn.PNG)
