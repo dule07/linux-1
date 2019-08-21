@@ -134,3 +134,6 @@ verb 3
 ```
 Copy 3 file như trên từ server đặt vào thư mục *config*
 Thực hiện quay VPN và kiểm tra kết quả
+![img](images/thumucconfigopenvpn.PNG)
+![img](images/ketquaquayopenvpn.PNG)
+![img](images/ketquabangdinhtuyenopenvpn.PNG)
