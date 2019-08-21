@@ -1,5 +1,10 @@
-# OPENVPN
+# OPENVPN Client to Side
 ## Cài đặt
+ - Mô hình
+ ![img](images/DiagramOpenvpn.PNG.PNG)
+ - IP Public Server: 192.168.1.136
+ - Dải tunner: 10.8.0.0/24
+ - Dải Private: 192.168.100.0/24
 ### Tải source
 ```
 yum install epel-release -y
