@@ -113,3 +113,4 @@ openvpn server.conf
 ```
 ## Cài đặt và quay vpn từ Client Windows
 Down phần mềm và cài đặt từ link http://build.openvpn.net/downloads/releases/latest/openvpn-install-latest-stable.exe
+
