@@ -90,6 +90,7 @@ push “redirect-gateway” (mọi traffic của VPN Client – http, dns, ftp,
 Khác với lệnh push route, chỉ những traffic đi vào mạng nội bộ mới thông qua Tunnel, khi dùng lệnh này 
 yêu cầu bên trong mạng nội bộ cần có NAT Server, DNS Server)
 push “dhcp-option DNS (WINS) 10.8.0.1” đẩy DNS or WINS config vào VPN Client
+comp-lzo
 ```
 ## Start Server
 ```
@@ -113,4 +114,23 @@ openvpn server.conf
 ```
 ## Cài đặt và quay vpn từ Client Windows
 Down phần mềm và cài đặt từ link http://build.openvpn.net/downloads/releases/latest/openvpn-install-latest-stable.exe
-
+Thư mục gốc sẽ là *C:\Program Files\OpenVPN*
+Trong thư mục config tạo 1 file *client.ovpn*
+```
+client
+dev tun
+proto udp
+remote 192.168.108.136 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+ca ca.crt
+cert nguyen.hoang.ha.crt
+key nguyen.hoang.ha.key
+cipher AES-256-CBC
+comp-lzo
+verb 3
+```
+Copy 3 file như trên từ server đặt vào thư mục *config*
+Thực hiện quay VPN và kiểm tra kết quả
