@@ -1,7 +1,7 @@
 # OPENVPN Client to Side
 ## Cài đặt
  - Mô hình
- ![img](images/DiagramOpenvpn.PNG)
+ ![img](images/DiagramOpenvpn.PNG.jpg)
  - IP Public Server: 192.168.1.136
  - Dải tunner: 10.8.0.0/24
  - Dải Private: 192.168.100.0/24
