@@ -137,7 +137,7 @@ cipher AES-256-CBC
 comp-lzo
 verb 3
 ```
- - Copy 3 file như trên từ server đặt vào thư mục *config*
+ - Copy 3 file cer và key như trên từ server đặt vào thư mục *config*
  - Thực hiện quay VPN và kiểm tra kết quả
 ![img](images/thumucconfigopenvpn.PNG)
 ![img](images/ketquaquayopenvpn.PNG)
@@ -208,7 +208,8 @@ esac
 ```
 vim /etc/systemd/system/openvpn.service
 [Unit]
-After=network.target remote-fs.target nss-lookup.target
+After=syslog.target network-online.target
+Wants=network-online.target
 Description=OpenVPN Server
 
 [Service]
