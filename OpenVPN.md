@@ -142,3 +142,82 @@ verb 3
 ![img](images/thumucconfigopenvpn.PNG)
 ![img](images/ketquaquayopenvpn.PNG)
 ![img](images/ketquabangdinhtuyenopenvpn.PNG)
+## Thêm Openvpn vào Systemd
+### Tạo file script start/stop dịch vụ
+```
+vim /usr/local/bin/openvpn
+#!/bin/bash
+# Location: /etc/openvpn
+
+function start_openvpn () {
+    if [ -f /var/run/openvpn.pid ] ; then
+        echo "Service is running"
+	exit 0
+    else
+	echo "Echo: starting service openvpn server"
+  	sleep 1
+  	nohup /usr/local/sbin/openvpn  /etc/openvpn/server.conf > /dev/null 2>&1 &
+  	echo $! > /var/run/openvpn.pid
+  	echo "Echo: starting done"
+    fi
+}
+
+function stop_openvpn () {
+   if [ ! -f /var/run/openvpn.pid ] ; then
+	echo "Service is not running"
+	exit 0
+   else
+	echo "Echo: stopping service openvpn server"
+	PID=`/usr/bin/cat /var/run/openvpn.pid`
+        kill -9 $PID
+        /usr/bin/rm -rf /var/run/openvpn.pid
+        sleep 1
+        echo "Echo: stopping done"
+   fi
+}
+
+function status_openvpn () {
+  echo "Echo service"
+}
+
+case "$1" in
+  'start')
+       start_openvpn
+    ;;
+  'stop')
+    stop_openvpn
+    ;;
+  'restart')
+    if [ -f /var/run/openvpn.pid ] ; then
+        stop_openvpn
+	sleep 1
+	start_openvpn
+    else
+        start_openvpn
+    fi
+    ;;
+  'status')
+    status_openvpn
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart}" >&2
+    ;;
+esac
+```
+### Tạo file openvpn.service
+```
+vim /etc/systemd/system/openvpn.service
+[Unit]
+After=network.target remote-fs.target nss-lookup.target
+Description=OpenVPN Server
+
+[Service]
+Type = forking
+ExecStart=/usr/local/bin/openvpn start
+ExecStop=/usr/local/bin/openvpn stop
+ExecReload=/usr/local/bin/openvpn restart
+
+[Install]
+WantedBy = multi-user.target
+```
+## Cấu hình Openvpn xác thực với Ldap
