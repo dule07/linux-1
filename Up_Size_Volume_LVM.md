@@ -95,7 +95,7 @@ sr0              11:0    1  918M  0 rom
   Size of logical volume centos/root changed from <38.13 GiB (9761 extents) to 48.12 GiB (12320 extents).
   Logical volume centos/root successfully resized.
 ```
-- Bước 8: Cập nhật lại tệp hệ thống. Xử dụng lệnh *resize2fs* hoặc *xfs_growfs*
+- Bước 8: Cập nhật lại tệp hệ thống. Xử dụng lệnh *resize2fs* cho ext3/ext4 hoặc *xfs_growfs* cho xfs
 ```
 [root@localhost ~]# resize2fs /dev/centos/root
 resize2fs 1.42.9 (28-Dec-2013)
