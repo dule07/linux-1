@@ -45,7 +45,7 @@ olcRootPW: {SSHA}V9ANz6mNI8nbcX0HyQFSTtLpU0T6aNUG
 ```
 ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
 ```
-- Tạo file monitor.ldif. Verify trong olcDatabase={1}monitor.ldif
+- Tạo file monitor.ldif. Giới hạn truy cập monitor chủ cho ldapadm. Verify trong olcDatabase={1}monitor.ldif
 ```
 vim monitor.ldif
 dn: olcDatabase={1}monitor,cn=config
@@ -162,3 +162,18 @@ result: 0 Success
 ```
 ldapdelete -W -D "cn=ldapadm,dc=sun-asterisk,dc=com" "uid=hoangha,ou=People,dc=sun-asterisk,dc=com"
 ```
+## Câu lênh
+-  slaptest -u : Kiểm tra config 
+## Thử đăng nhập ssh vô Centos thông qua Ldap
+- Trên Centos Client cài gói client và chuyển xác thực qua Ldap Server
+```
+yum install -y openldap-clients nss-pam-ldapd
+authconfig --enableldap --enableldapauth --ldapserver=192.168.108.136 --ldapbasedn="dc=sun-asterisk,dc=com" --enablemkhomedir --update
+systemctl restart  nslcd
+```
+- Thử get infor user trên Ldap
+```
+getent passwd hoangha
+hoangha:x:9999:100:Hoang Ha [Admin (at) Sun-Asterisk]:/home/hoangha:/bin/bash
+```
+- Thử login ssh bằng user trên
