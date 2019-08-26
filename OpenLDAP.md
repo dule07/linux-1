@@ -162,7 +162,7 @@ result: 0 Success
 ```
 ldapdelete -W -D "cn=ldapadm,dc=sun-asterisk,dc=com" "uid=hoangha,ou=People,dc=sun-asterisk,dc=com"
 ```
-## Câu lênh
+## Câu lệnh
 -  slaptest -u : Kiểm tra config 
 ## Thử đăng nhập ssh vô Centos thông qua Ldap
 - Trên Centos Client cài gói client và chuyển xác thực qua Ldap Server
