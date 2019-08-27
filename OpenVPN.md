@@ -256,3 +256,6 @@ dn: uid=openvpn,ou=People,dc=sun-asterisk,dc=com
 ```
 auth-user-pass
 ```
+## Ràng buộc Client đăng nhập user trùng với user key vpn
+- Theo như cấu hình trên thì Client đăng nhập bằng user nào cũng được (user trên ldap) mà không quan tâm tới đang dùng key vpn tên gì
+- Giờ ta sẽ ràng buộc như key hoangha sẽ phải xác thực bằng user hoangha
