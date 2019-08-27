@@ -222,3 +222,37 @@ ExecReload=/usr/local/bin/openvpn restart
 WantedBy = multi-user.target
 ```
 ## Cấu hình Openvpn xác thực với Ldap
+- Cài thêm gói 
+```
+yum install -y openvpn-auth-ldap
+```
+- File cấu hình vpn server thêm
+```
+plugin /usr/lib64/openvpn/plugin/lib/openvpn-auth-ldap.so /etc/openvpn/auth/ldap.conf
+client-cert-not-required
+```
+- Trên Ldap tạo 1 user *openvpn*. Sau khi tạo kiểm tra thông tin user có infor như dưới
+```
+dn: uid=openvpn,ou=People,dc=sun-asterisk,dc=com
+```
+- Cấu hình file /etc/openvpn/auth
+```
+<LDAP>
+	URL		ldap://localhost:389
+
+	BindDN		uid=openvpn,ou=People,dc=sun-asterisk,dc=com
+ 	Password	hoangha1908
+	Timeout		15
+	TLSEnable	no
+	FollowReferrals yes
+</LDAP>
+<Authorization>
+	BaseDN		"ou=People,dc=sun-asterisk,dc=com"
+	SearchFilter "(&(uid=%u))"
+	RequireGroup	false
+</Authorization>
+```
+- File cấu hình client.ovpn thêm cấu hình
+```
+auth-user-pass
+```
