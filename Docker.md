@@ -6,10 +6,13 @@
  ![img](images/dockervsvm.png)
  - Docker compose: Dùng để khai báo và run multi-container cho docker. Sử dụng file yaml để config
 ## Cài đặt
+- Bao gồm cả docker client
 ```
 yum update
 curl -fsSL https://get.docker.com/ | sh
 sudo systemctl start docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 ```
 - Thấy network có thêm 1 card docker0
 ```
