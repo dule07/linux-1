@@ -258,7 +258,7 @@ auth-user-pass
 ## Ràng buộc Client đăng nhập user trùng với user key vpn
 - Theo như cấu hình trên thì Client đăng nhập bằng user nào cũng được (user trên ldap) mà không quan tâm tới đang dùng key vpn tên gì
 - Giờ ta sẽ ràng buộc như key hoangha sẽ phải xác thực bằng user hoangha
-- Thêm 1 file script check username (ldap) có khớp với common_name (certificate_client) có giống nhau không. Nếu giống thì trả về OK (code 0), ngược lại là Fail (code 1)
+- Thêm 1 file script check username (ldap) có khớp với common_name (certificate_client) không?  Nếu giống thì trả về OK (code 0), ngược lại là Fail (code 1)
 ```
 vim check_cn_on_connect.sh
 #!/bin/bash
