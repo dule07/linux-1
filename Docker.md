@@ -5,6 +5,15 @@
 - Vậy đại khái là 1 giải pháp để chạy máy ảo trong một máy khác  tuy nhiên nó nhẹ hơn VM nhiều vì nó chỉ đống gói 1 phần (hơi chung chung) và dùng chung rất nhiều tài nguyên. Bình thường mỗi máy ảo sẽ có 1 kernel riêng, thư viện riêng nhưng Container thì #, nó sài chung luôn ==> giảm được tài nguyên. Hoặc suy nghĩ là VM là ảo hóa mức OS, Docker là ảo hóa mức APP ==> không nên chạy nhiều App trong 1 container
  ![img](images/dockervsvm.png)
  - Docker compose: Dùng để khai báo và run multi-container cho docker. Sử dụng file yaml để config
+ ### Dockerfile
+- Chứa tập hợp các lệnh để docker đọc và thực thi nhằm mục đích đóng gói 1 image theo yêu cầu của người phát triển. Bằng cách sử dụng *docker build*. Format file là
+```
+#Comment
+Instruction Arguments
+```
+- FROM: Là base image để chúng ta tiến hành build 1 image mới trên image base. Ví dụ FROM ubuntu
+- MAINTAINER: Thông tin người phát triển
+- RUN: 
 ## Cài đặt
 - Bao gồm cả docker client
 ```
