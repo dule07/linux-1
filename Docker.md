@@ -20,6 +20,6 @@ sudo systemctl start docker
 ```
 - Tiến trình có thêm
 ```
-root       9216      1 TS   19 14:27 ?        00:00:01 /usr/bin/containerd
-root       9217      1 TS   19 14:27 ?        00:00:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root  9216  1 TS 19 14:27 ?  00:00:01 /usr/bin/containerd
+root  9217  1 TS 19 14:27 ?  00:00:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
