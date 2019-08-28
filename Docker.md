@@ -4,4 +4,22 @@
 - Image khi được chạy lên sẽ khởi tạo 1 instance của image và nó được gọi là container
 - Vậy đại khái là 1 giải pháp để chạy máy ảo trong một máy khác  tuy nhiên nó nhẹ hơn VM nhiều vì nó chỉ đống gói 1 phần (hơi chung chung) và dùng chung rất nhiều tài nguyên. Bình thường mỗi máy ảo sẽ có 1 kernel riêng, thư viện riêng nhưng Container thì #, nó sài chung luôn ==> giảm được tài nguyên. Hoặc suy nghĩ là VM là ảo hóa mức OS, Docker là ảo hóa mức APP ==> không nên chạy nhiều App trong 1 container
  ![img](images/dockervsvm.png)
-##
+ - Docker compose: Dùng để khai báo và run multi-container cho docker. Sử dụng file yaml để config
+## Cài đặt
+```
+yum update
+curl -fsSL https://get.docker.com/ | sh
+sudo systemctl start docker
+```
+- Thấy network có thêm 1 card docker0
+```
+18: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:e9:17:00:a3 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+```
+- Tiến trình có thêm
+```
+root       9216      1 TS   19 14:27 ?        00:00:01 /usr/bin/containerd
+root       9217      1 TS   19 14:27 ?        00:00:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+```
