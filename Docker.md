@@ -39,3 +39,44 @@ sudo chmod +x /usr/local/bin/docker-compose
 root  9216  1 TS 19 14:27 ?  00:00:01 /usr/bin/containerd
 root  9217  1 TS 19 14:27 ?  00:00:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
+## Demo tạo một image chạy nginx trên ubuntu/centos
+- Tạo 1 Centos
+```
+vim Dockerfile
+FROM centos:7
+CMD echo "Create Image Centos 7
+RUN yum -y install epel-release
+RUN yum -y update && yum clean all
+RUN yum -y vim wget net-tools git
+RUN yum -y install nginx
+ADD index.html /var/www/html
+EXPOSE 80
+CMD [ "nginx", "-g", "daemon off;" ] # Vì docker có kiểm tra tiến trình, nếu ko có thì nó stop container. Nên phải cho Nginx chạy foreground để Docker nhìn thấy process. 
+
+vim Dockerfile
+FROM ubuntu:16.04
+CMD echo "Hello ubuntu"
+#Update the repository
+RUN apt-get update
+#Install necessary tools
+RUN apt-get install -y nano wget dialog net-tools vim git
+#Download and Install nginx
+RUN apt-get install -y nginx
+# Remove file index docker
+RUN rm -v /var/www/html/index.nginx-debian.html
+ADD index.nginx-debian.html /var/www/html
+EXPOSE 80
+CMD [ "nginx", "-g", "deamon off;" ]
+```
+- Thực hiện build image
+```
+docker build -t "mycentos" .
+mycentos: Tên image
+.: Tức là file Dockerfile đang ở thư mục hiện tại
+```
+- Thực hiện lauch container
+```
+docker run -d -p 8080:80 mycentos
+Thực hiện chạy image tên mycentos và bind port 8080 local với port 80 của container
+Client sẽ truy cập nginx qua IP_Server:8080
+```
