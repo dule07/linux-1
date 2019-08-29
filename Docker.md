@@ -13,7 +13,11 @@ Instruction Arguments
 ```
 - FROM: Là base image để chúng ta tiến hành build 1 image mới trên image base. Ví dụ FROM ubuntu
 - MAINTAINER: Thông tin người phát triển
-- RUN: 
+- RUN: Sử dụng để thực thi các command trong quá trình build image
+- COPY: Copy một file từ host machine tới docker container
+- WORKDIR: image sẽ trỏ tới directory khai báo, nếu không có sẽ tạo mới
+- ENV: Định nghĩa biến môi trường
+- CMD: Sử dụng để thực thi các command trong quá trình build container mới từ image
 ## Cài đặt
 - Bao gồm cả docker client
 ```
