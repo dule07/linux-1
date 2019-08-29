@@ -90,6 +90,7 @@ Client sẽ truy cập nginx qua IP_Server:8080
 - Tham khảo các parameter trong câu lệnh https://docs.docker.com/engine/reference/commandline/run/
 - docker run -p 8080:80 -it mycentos /bin/bash: Thực hiện run image và truy cập vào container (như ssh vô). 
 - docker run -d -p 8080:80 mycentos :Thực hiện run image và chạy container ở chế độ ngầm, đồng thời hiện ra container ID
+- Process của một container running khi show ở host machine
 ```
 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8899 -container-ip 172.17.0.5 -container-port 80
 containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/59a9ff66ced82e3294bbf92a1bddc579a643c
