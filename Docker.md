@@ -81,3 +81,8 @@ docker run -d -p 8080:80 mycentos
 Thực hiện chạy image tên mycentos và bind port 8080 local với port 80 của container
 Client sẽ truy cập nginx qua IP_Server:8080
 ```
+## Câu lệnh
+- docker ps: Hiện thị các container đang chạy
+- docker images: Hiện thị các image
+- docker run -p 8080:80 -it mycentos /bin/bash: Thực hiện chạy 1 image (lauch container)
+- docker stop [id_container]: Stop  container
