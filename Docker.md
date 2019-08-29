@@ -95,9 +95,10 @@ Client sẽ truy cập nginx qua IP_Server:8080
 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8899 -container-ip 172.17.0.5 -container-port 80
 containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/59a9ff66ced82e3294bbf92a1bddc579a643c
 ```
-- docker stop [id_container]: Stop  container
+- docker stop [id_container]: Stop container
+- docker rm [id_container]" Xóa container
 ### Docker build
 ### Docker show
 - docker ps: Hiện thị các container đang chạy
-- docker ps -all: Hiện thị toàn các các container
+- docker ps --all: Hiện thị toàn các các container
 
