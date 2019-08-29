@@ -86,10 +86,11 @@ Client sẽ truy cập nginx qua IP_Server:8080
 - docker images: Hiện thị các image
 - docker rmi [name_image]: Xóa Image
 - docker rmi -f [name_image]: Xóa image kể cả khi nó đang liên kết tới 1 container
-### Docker run
+### Docker run ... container
 - Tham khảo các parameter trong câu lệnh https://docs.docker.com/engine/reference/commandline/run/
 - docker run -p 8080:80 -it mycentos /bin/bash: Thực hiện run image và truy cập vào container (như ssh vô). 
 - docker run -d -p 8080:80 mycentos :Thực hiện run image và chạy container ở chế độ ngầm, đồng thời hiện ra container ID
+- docker run --rm -d -p 8999:80 mycentos: Thêm --rm nếu muốn khi container mà stop thì xóa đi luôn
 - Process của một container running khi show ở host machine
 ```
 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8899 -container-ip 172.17.0.5 -container-port 80
@@ -97,8 +98,10 @@ containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runti
 ```
 - docker stop [id_container]: Stop container
 - docker rm [id_container]" Xóa container
-### Docker build
-### Docker show
+- docker rm $(docker ps -a -f status=exited -q): Xóa toàn bộ container có trạng thái là exited. -f là filter
+### Docker build image
+### Docker show container
 - docker ps: Hiện thị các container đang chạy
-- docker ps --all: Hiện thị toàn các các container
+- docker ps --all/-a: Hiện thị toàn các các container
+- docker ps -a -f status=exited: Hiện thị các container có trạng thái exited
 
