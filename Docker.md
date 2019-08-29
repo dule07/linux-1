@@ -87,6 +87,7 @@ Client sẽ truy cập nginx qua IP_Server:8080
 - docker rmi [name_image]: Xóa Image
 - docker rmi -f [name_image]: Xóa image kể cả khi nó đang liên kết tới 1 container
 ### Docker run
+- Tham khảo các parameter trong câu lệnh https://docs.docker.com/engine/reference/commandline/run/
 - docker run -p 8080:80 -it mycentos /bin/bash: Thực hiện run image và truy cập vào container (như ssh vô). 
 - docker run -d -p 8080:80 mycentos :Thực hiện run image và chạy container ở chế độ ngầm, đồng thời hiện ra container ID
 ```
@@ -94,11 +95,8 @@ Client sẽ truy cập nginx qua IP_Server:8080
 containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/59a9ff66ced82e3294bbf92a1bddc579a643c
 ```
 - docker stop [id_container]: Stop  container
-## Docker build
-## Docker show
+### Docker build
+### Docker show
 - docker ps: Hiện thị các container đang chạy
 - docker ps -all: Hiện thị toàn các các container
 
-- docker ps: Hiện thị các container đang chạy
-
-- Tham khảo các parameter trong câu lệnh https://docs.docker.com/engine/reference/commandline/run/
