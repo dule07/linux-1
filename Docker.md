@@ -40,7 +40,7 @@ root  9216  1 TS 19 14:27 ?  00:00:01 /usr/bin/containerd
 root  9217  1 TS 19 14:27 ?  00:00:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
 ## Demo tạo một image chạy nginx trên ubuntu/centos
-- Tạo 1 Centos
+- Tạo Dockerfile
 ```
 vim Dockerfile
 FROM centos:7
@@ -62,12 +62,13 @@ RUN apt-get update
 RUN apt-get install -y nano wget dialog net-tools vim git
 #Download and Install nginx
 RUN apt-get install -y nginx
-# Remove file index docker
+# Remove file index docker. Add file index.html in host machine to /var/www/html in image
 RUN rm -v /var/www/html/index.nginx-debian.html
-ADD index.nginx-debian.html /var/www/html
+ADD index.html /var/www/html
 EXPOSE 80
 CMD [ "nginx", "-g", "deamon off;" ]
 ```
+- Tạo file index.html với nội dung bất kì
 - Thực hiện build image
 ```
 docker build -t "mycentos" .
