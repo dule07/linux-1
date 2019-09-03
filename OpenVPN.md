@@ -42,7 +42,7 @@ vim /etc/openvpn/easy-rsa/vars (sửa các thông số mặc định hoặc có
 ### Tạo CA Certificate Server và Key
 Tạo  Root Cerificate
 ```
-/etc/openvpn/easy-rsa
+cd /etc/openvpn/easy-rsa
 source vars
 ./clean-all #Chỉ chạy 1 lần đầu tiên. Nó sẽ xóa toàn bộ key trong thư mục keys
 ./pkitool --keysize 4096 --initca
